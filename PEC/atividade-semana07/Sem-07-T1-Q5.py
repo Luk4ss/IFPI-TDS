@@ -1,26 +1,25 @@
 
 def imc(peso, altura):
-    return peso / (altura ** 2)
+    IMC = peso / (altura ** 2)
+
+    if IMC < 18.5:
+        return 'Abaixo do peso'
+    elif IMC < 25.0:
+        return 'Peso normal'
+    elif IMC < 30.0:
+        return 'Sobrepeso'
+    elif IMC < 35.0:
+        return 'Obeso leve'
+    elif IMC < 40.0:
+        return 'Obeso moderado'
+    elif IMC >= 40.0:
+        return 'Obeso mórbido'
 
 
 def main():
     peso = float(input())
     altura = float(input())
-
-    IMC = imc(peso, altura)
-
-    if IMC < 18.5:
-        print('Abaixo do peso')
-    elif IMC < 25.0:
-        print('Peso normal')
-    elif IMC < 30.0:
-        print('Sobrepeso')
-    elif IMC < 35.0:
-        print('Obeso leve')
-    elif IMC < 40.0:
-        print('Obeso moderado')
-    elif IMC >= 40.0:
-        print('Abaixo do peso')
+    print(imc(peso, altura))
 
 
 if __name__ == '__main__':
