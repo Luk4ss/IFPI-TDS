@@ -1,19 +1,19 @@
 
 def imc(peso, altura):
-    IMC = peso / (altura ** 2)
+    IMC = int(peso // (altura ** 2))
 
     if IMC < 18.5:
-        return f'IMC: {IMC:.2f}\nAbaixo do peso'
+        return f'{IMC}\nAbaixo do peso'
     elif IMC < 25.0:
-        return f'IMC: {IMC:.2f}\nPeso normal'
+        return f'{IMC}\nPeso normal'
     elif IMC < 30.0:
-        return f'IMC: {IMC:.2f}\nSobrepeso'
+        return f'{IMC}\nSobrepeso'
     elif IMC < 35.0:
-        return f'IMC: {IMC:.2f}\nObeso leve'
+        return f'{IMC}\nObeso leve'
     elif IMC < 40.0:
-        return f'IMC: {IMC:.2f}\nObeso moderado'
+        return f'{IMC}\nObeso moderado'
     elif IMC >= 40.0:
-        return f'IMC: {IMC:.2f}\nObeso mórbido'
+        return f'{IMC}\nObeso mórbido'
 
 
 def main():
