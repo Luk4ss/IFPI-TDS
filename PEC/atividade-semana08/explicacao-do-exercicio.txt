@@ -1,0 +1,11 @@
+
+Nesse programa, o usuário entra com sua data de nascimento e o programa retorna o seu signo e o seu horóscopo.
+Nesse programa há 5 funções: main, separar__data, remover_acento, signo e horoscopo.
+A função 'main', é onde é mantido o código principal e ela será executada somente o próprio módulo for executado. Isso ocorre por causa da condição if __name__ == '__main__'. 
+A função 'separar_data'recebe como parâmetro um número, que é para ser uma data de nascimento, e divide ele em partes, separando um dia, mês e ano. Esse função é necessário para determinar o signo relacionado à data de nascimento.
+A função 'signo', como o próprio nome diz, retorna uma string informando o signo relacionado à data de nascimento que foi inserida. Ela recebe como parâmetro o dia e o mês de nascimento. 
+A função 'remover_acento' serve para formatar uma string, e de acordo com a configuração do código, ela retira os acentos e deixa somente os caracteres relacionados à tabela ASCII, ou seja, codifica/decodifica a string de acordo com à tabela ASCII.
+E por último, a função 'horoscopo' possui uma requisição http, onde nessa requisição é configurada passando uma 'url' que é o site de horóscopos mais o signo do usuário. Nessa função também é indicado qual fragmento da página vai ser armazenado, no caso
+é armazenado o elemento html '<p></p>' que possui o atributo de classe de nome 'text-pred', ou seja, um "<p class='text-pred'></p>'. E por fim, essa função retorna também o seu signo com o horóscopo.  
+ 
+
