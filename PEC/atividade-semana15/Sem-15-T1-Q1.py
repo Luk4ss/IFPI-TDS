@@ -6,25 +6,25 @@ def menor(n1, n2):
     return n2 if n1 > n2 else n1
 
 
-def position(matriz, major, minor):
-    pos_i_maior = 0
-    pos_j_maior = 0
-    pos_i_menor = 0
-    pos_j_menor = 0
-
+def position_maior(matriz, major):
+    pos_maior = 0
     for line in matriz:
         for number in line:
             if number == major:
-                pos_i_maior = matriz.index(line)
-                pos_j_maior = line.index(number)
+                pos_maior = matriz.index(line), line.index(number)
+                return pos_maior
+
+    return pos_maior
+
+
+def position_menor(matriz, minor):
+    pos_menor = 0
+    for line in matriz:
+        for number in line:
             if number == minor:
-                pos_i_menor = matriz.index(line)
-                pos_j_menor = line.index(number)
-
-    pos_maior = pos_i_maior, pos_j_maior
-    pos_menor = pos_i_menor, pos_j_menor
-
-    return pos_maior, pos_menor
+                pos_menor = matriz.index(line), line.index(number)
+                return pos_menor
+    return pos_menor
 
 
 matriz_A = []
@@ -47,7 +47,8 @@ for row in matriz_A:
     maximo = maior(maximo, max(row))
     minimo = menor(minimo, min(row))
 
-t1, t2 = position(matriz_A, maximo, minimo)
+t1 = position_maior(matriz_A, maximo)
+t2 = position_menor(matriz_A, minimo)
 
 print(t1)
 print(t2)
