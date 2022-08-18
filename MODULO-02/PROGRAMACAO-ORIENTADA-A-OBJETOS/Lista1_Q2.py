@@ -1,3 +1,5 @@
+from random import *
+
 
 def main():
     class Gato:
@@ -10,6 +12,13 @@ def main():
         cio = None
         prenhe = None
         puerperio = None
+
+        def __init__(self, nome, sexo, peso, idade, raca):
+            self.nome = nome
+            self.peso = peso
+            self.sexo = sexo
+            self.idade = idade
+            self.raca = raca
 
         def mudar_nome(self, nome):
             self.nome = nome
@@ -30,63 +39,63 @@ def main():
                 print(f'{self.nome} agora está no cio. ')
 
         def cruzar(self, gato):
-            if type(gato) == type(Gato()):
+            if type(gato) == type(self):
                 print(">>>>>>>> Processo de cruzamento iniciado...")
                 if (self.sexo != gato.sexo) and (self.fertil and gato.fertil) and (
                         self.cio == True or gato.cio == True):
                     if self.puerperio != True and gato.puerperio != True:
-                        print('>> O cruzamento foi um sucesso! Um(a) novo(a) gatinho(a) acaba de nascer :) <<')
                         if self.sexo == 'F':
                             self.prenhe = True
-                            self.puerperio = True
                         else:
                             gato.prenhe = True
-                            gato.puerperio = True
-                        return Gato()
+                        return '>>> O cruzamento foi um sucesso! Novos filhotinhos estão por vir :) <<<'
 
-                print('>> FALHOU !!! Pelo menos um dos gatos envolvidos não está em condições de acasalar.')
+                return '!!! FALHOU !!! Pelo menos um dos gatos envolvidos não está em condições de acasalar...'
 
-            else:
-                print('Por favor! Informe um gato em condições de acasalamento.')
+            return 'Por favor! Informe um animal do tipo gato...'
+
+        def parir(self):
+            if self.sexo == 'F' and self.prenhe:
+                self.puerperio = True
+                filhotes = []
+                qtd_filhotes = randint(1, 8)
+                print(f'Quantidade de filhotes que nasceram : {qtd_filhotes}')
+                for i in range(qtd_filhotes):
+                    print(f'\n >>>> Dados do Filhote #{i + 1} <<<<')
+                    sexo_filhote = choice(['F', 'M'])
+                    peso_filhote = random().__round__(2)
+                    print(f'Sexo do filhote: {sexo_filhote}')
+                    nome_filhote = input('Digite o nome do filhote: ')
+                    raca_filhote = choice(['Siamês', 'Vira-lata', 'Persa', 'Angorá', 'Ragdoll'])
+                    filhotes.append(Gato(nome_filhote, sexo_filhote, peso_filhote, 0, raca_filhote))
+                return filhotes
+
+            return 0
 
     # Gato Felix
-    felix = Gato()
-    felix.nome = 'Felix'
-    felix.sexo = 'M'
-    felix.idade = 1
-    felix.peso = 2.5
-    felix.raca = 'siamês'
-
+    felix = Gato('Félix', 'M', 2.5, 1, 'siamês')
     felix.envelhecer()
     felix.engordar(0.5)
 
     # Gata Mel
-    mel = Gato()
-    mel.nome = 'Mel'
-    mel.sexo = 'F'
-    mel.idade = 1
-    mel.peso = 2
-    mel.raca = 'vira-lata'
-
+    mel = Gato('Mel', 'F', 2.0, 1, 'vira-lata')
     mel.envelhecer()
     mel.engordar(0.5)
     mel.entrar_no_cio()
 
     # Gato Garfield
-    garfield = felix.cruzar(mel)
+    print(mel.cruzar(felix))
+    ninhada = mel.parir()
 
-    garfield.nome = 'Garfield'
-    garfield.sexo = 'M'
-    garfield.idade = 0
-    garfield.peso = 1.5
-    garfield.raca = 'vira-lata'
-
-    garfield.envelhecer()
-    garfield.engordar(0.85)
+    print('\n >>>> TODOS OS FILHOTES <<<<')
+    for filhote in ninhada:
+        print(f'Filhote >>> Nome: {filhote. nome}, Sexo: {filhote.sexo}, Raça: {filhote.raca}, Peso: {filhote.peso} kg')
 
     # Teste de parâmetros indevidos
-    gato_a = mel.cruzar(felix)
-    gato_b = felix.cruzar(2)
+    print('-------------------------------------')
+    print(mel.cruzar(felix))
+    print('-------------------------------------')
+    print(felix.cruzar(2))
 
 
 if __name__ == '__main__':
