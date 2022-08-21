@@ -35,10 +35,9 @@ def main():
 
     fusca = Carro('Fusca', 1965, 'preto', 80)
     fusca.ligar()
-    fusca.velocidade_atual = 20
+    fusca.acelerar(20)
 
     ferrari = Carro('Ferrari_sr2000', 2014, 'vermelho', 300)
-
 
     # letra a)
     fusca.acelerar(20)
