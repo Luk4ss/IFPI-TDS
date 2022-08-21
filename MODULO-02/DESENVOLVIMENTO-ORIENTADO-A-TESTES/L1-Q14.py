@@ -1,5 +1,9 @@
 # LISTA 1 - QUESTÃO 14
+"""
+14. Escreva uma função que recebe por parâmetro um valor inteiro e positivo N e retorna o valor de S.
 
+S = 1 + 1/1! + 1⁄2! + 1/3! + 1 /N!
+"""
 
 def cacula_expressao(n):
     s = 0
