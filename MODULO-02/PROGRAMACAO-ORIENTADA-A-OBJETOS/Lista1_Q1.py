@@ -1,19 +1,21 @@
 
 def main():
     class Carro:
-        nome = None
-        ano = None
-        cor = None
-        estado = None
-        velocidade_atual = None
-        velocidade_maxima = None
+
+        def __init__(self, nome, ano, cor, velocidade_maxima):
+            self.nome = nome
+            self.ano = ano
+            self.cor = cor
+            self.velocidade_maxima = velocidade_maxima
+            self.velocidade_atual = 0
+            self.estado = False
 
         def ligar(self):
-            estado = True
+            self.estado = True
             print(f'O(A) {self.nome} está ligado(a)')
 
         def desligar(self):
-            estado = False
+            self.estado = False
             self.velocidade_atual = 0
             print(f'O(A) {self.nome} está desligado(a)')
 
@@ -31,21 +33,12 @@ def main():
             else:
                 print('Não é possível acelerar com o carro desligado.')
 
-    fusca = Carro()
-    fusca.nome = 'Fusca'
-    fusca.ano = 1965
-    fusca.cor = 'preto'
-    fusca.velocidade_maxima = 80
+    fusca = Carro('Fusca', 1965, 'preto', 80)
+    fusca.ligar()
     fusca.velocidade_atual = 20
-    fusca.estado = True
 
-    ferrari = Carro()
-    ferrari.nome = 'Ferrari_sr2000'
-    ferrari.ano = 2014
-    ferrari.cor = 'vermelho'
-    ferrari.velocidade_maxima = 300
-    ferrari.velocidade_atual = 0
-    ferrari.estado = False
+    ferrari = Carro('Ferrari_sr2000', 2014, 'vermelho', 300)
+
 
     # letra a)
     fusca.acelerar(20)

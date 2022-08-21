@@ -2,6 +2,9 @@ from random import *
 
 
 def main():
+
+    populacao_gatos = []
+
     class Gato:
         nome = None
         raca = None
@@ -57,6 +60,7 @@ def main():
         def parir(self):
             if self.sexo == 'F' and self.prenhe:
                 self.puerperio = True
+                self.prenhe = False
                 filhotes = []
                 qtd_filhotes = randint(1, 8)
                 print(f'Quantidade de filhotes que nasceram : {qtd_filhotes}')
@@ -67,7 +71,9 @@ def main():
                     print(f'Sexo do filhote: {sexo_filhote}')
                     nome_filhote = input('Digite o nome do filhote: ')
                     raca_filhote = choice(['Siamês', 'Vira-lata', 'Persa', 'Angorá', 'Ragdoll'])
-                    filhotes.append(Gato(nome_filhote, sexo_filhote, peso_filhote, 0, raca_filhote))
+                    filhotinho = Gato(nome_filhote, sexo_filhote, peso_filhote, 0, raca_filhote)
+                    filhotes.append(filhotinho)
+                    populacao_gatos.append(filhotinho)
                 return filhotes
 
             return 0
@@ -76,16 +82,19 @@ def main():
     felix = Gato('Félix', 'M', 2.5, 1, 'siamês')
     felix.envelhecer()
     felix.engordar(0.5)
+    populacao_gatos.append(felix)
 
     # Gata Mel
     mel = Gato('Mel', 'F', 2.0, 1, 'vira-lata')
     mel.envelhecer()
     mel.engordar(0.5)
     mel.entrar_no_cio()
+    populacao_gatos.append(mel)
 
     # Gato Garfield
     print(mel.cruzar(felix))
     ninhada = mel.parir()
+
 
     print('\n >>>> TODOS OS FILHOTES <<<<')
     for filhote in ninhada:
@@ -96,7 +105,12 @@ def main():
     print(mel.cruzar(felix))
     print('-------------------------------------')
     print(felix.cruzar(2))
+    print('-------------------------------------')
 
+    # Imprime toda a população de gatos
+    print(' >>>>>> POPULAÇÃO DE GATOS <<<<<<< ')
+    for gato in populacao_gatos:
+        print(f'Nome: {gato.nome}, sexo: {gato.sexo}, idade: {gato.idade}, raça: {gato.raca}')
 
 if __name__ == '__main__':
     main()
