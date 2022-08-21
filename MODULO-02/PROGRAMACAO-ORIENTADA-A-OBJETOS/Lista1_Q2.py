@@ -110,7 +110,8 @@ def main():
     # Imprime toda a população de gatos
     print(' >>>>>> POPULAÇÃO DE GATOS <<<<<<< ')
     for gato in populacao_gatos:
-        print(f'Nome: {gato.nome}, sexo: {gato.sexo}, idade: {gato.idade}, raça: {gato.raca}')
+        print(f'Nome: {gato.nome}, sexo: {gato.sexo}, idade: {gato.idade}, raça: {gato.raca}, peso: {gato.peso} kg')
+
 
 if __name__ == '__main__':
     main()
