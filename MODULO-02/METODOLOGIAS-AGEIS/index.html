@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/estilo.css">
+    <script src="assets/js/app.js" defer></script>
+    <title>FORMULÁRIO</title>
+</head>
+<body>
+    <main>
+        <form method="POST">
+            <div>
+                <label for="Data">Data: </label>
+                <br />
+                <input type="date" id="Data" />
+            </div>
+            <br />
+            <div>
+                <label for="ValorU">Valor unitário(R$):</label>
+                <br />
+                <input type="text" id="ValorU" />
+            </div>
+            <br />    
+            <div>
+                <label for="codigo">Código do ativo: </label>
+                <br />
+                <input type="text" id="codigo" />
+            </div>
+            <br />
+            <div>
+                <label for="QntdA">Quantidade de Ações: </label>
+                <br />
+                <input type="number" id="QntdA" />
+            </div>
+            <br />
+            <div>
+                <label for="taxa"> Taxa de Corretagem(%): </label>
+                <br />
+                <input type="number" id="taxa" />
+            </div>
+            <div class="op">
+                <p>Tipo de Operação:</p>
+                <span>
+                    <select name="tipoOpercao" id="tipoOperacao">
+                        <option value="compra">COMPRA</option>
+                        <option value="venda">VENDA</option>
+                    </select>
+                </span>
+            </div>
+            <br />
+            <div class="botao">
+                <button type="submit" onclick="imprimir()">ENVIAR</button>
+            </div>
+        </form>
+    </main>
+</body>
+</html>

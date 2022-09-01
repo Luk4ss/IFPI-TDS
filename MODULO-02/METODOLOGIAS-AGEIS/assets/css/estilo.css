@@ -1,0 +1,45 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.05rem;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input{
+    border-radius: 2px solid blue;
+    
+}
+
+form{
+    max-width: 768px;
+    border: 2px solid purple;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 15px;
+    align-content: center;
+}
+
+
+button{
+    padding: 8px 25px;
+    border-radius: 25px;
+    background-color: green;
+    color: #FFFFFF;
+    font-weight: bolder;
+}
+
+select{
+    padding: 5px;
+    font-weight: bolder;
+    background-color: lightcyan;
+    color: darkred;
+}
+
+.botao{
+    display: flex;
+    justify-content: center;
+}
