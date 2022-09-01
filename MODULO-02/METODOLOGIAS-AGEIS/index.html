@@ -10,7 +10,7 @@
 </head>
 <body>
     <main>
-        <form method="POST">
+        <div class="dados">
             <div>
                 <label for="Data">Data: </label>
                 <br />
@@ -20,7 +20,7 @@
             <div>
                 <label for="ValorU">Valor unitário(R$):</label>
                 <br />
-                <input type="text" id="ValorU" />
+                <input type="text" id="ValorU" pattern="0-9" />
             </div>
             <br />    
             <div>
@@ -38,22 +38,25 @@
             <div>
                 <label for="taxa"> Taxa de Corretagem(%): </label>
                 <br />
-                <input type="number" id="taxa" />
+                <input type="text" id="taxa" />
             </div>
             <div class="op">
                 <p>Tipo de Operação:</p>
                 <span>
                     <select name="tipoOpercao" id="tipoOperacao">
-                        <option value="compra">COMPRA</option>
-                        <option value="venda">VENDA</option>
+                        <option value="COMPRA">COMPRA</option>
+                        <option value="VENDA">VENDA</option>
                     </select>
                 </span>
             </div>
             <br />
             <div class="botao">
-                <button type="submit" onclick="imprimir()">ENVIAR</button>
+                <button onclick="imprimir()">ENVIAR</button>
             </div>
-        </form>
+        </div>
+        <div>
+            <p id="detalhes"></p>
+        </div>
     </main>
 </body>
 </html>
