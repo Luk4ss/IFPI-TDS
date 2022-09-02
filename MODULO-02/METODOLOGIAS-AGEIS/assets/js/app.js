@@ -11,7 +11,7 @@ function imprimir(){
 
     const taxa_corretagem = Number(document.getElementById("taxa").value);
 
-    const taxaB3 = codigoAcao == 'B3SA3' ? 0.60 : 0.285;
+    const taxaB3 = (valorUnitario *  quantidade) *0.0003;
 
     const tipoOp = document.getElementById("tipoOperacao").value;
 
@@ -37,7 +37,7 @@ function imprimir(){
                          VALOR UNITÁRIO: R$ ${valorUnitario.toFixed(2)}\n
                          TAXA B3: R$ ${taxaB3.toFixed(2)}\n
                          TAXA CORRETAGEM: R$ ${taxa_corretagem.toFixed(2)}\n
-                         TIPO: ${tipoOp}
+                         OPERAÇÃO: ${tipoOp}\n
                          DATA DA OPERAÇÃO: ${dataOp}`;
 
 

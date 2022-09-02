@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\gfg\\templates"
+    "\\assets",
+    "\\assets\\css",
+    "\\assets\\images",
+    "\\assets\\js",
+    "\\backend\\gfg"
   ],
-  "SelectedNode": "\\gfg",
   "PreviewInSolutionExplorer": false
 }
