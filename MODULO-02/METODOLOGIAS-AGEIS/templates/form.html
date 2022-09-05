@@ -4,46 +4,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/estilo.css">
-    <script src="assets/js/app.js" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+    <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
     <title>FORMULÁRIO</title>
 </head>
 <body>
     <main>
-        <div class="dados">
+        <form method="POST" action="/details.html" >
             <div>
                 <label for="Data">Data: </label>
                 <br />
-                <input type="date" id="Data" />
+                <input type="date" id="Data" name="fdata" />
             </div>
             <br />
             <div>
                 <label for="ValorU">Valor unitário(R$):</label>
                 <br />
-                <input type="text" id="ValorU" pattern="0-9" />
+                <input type="text" id="ValorU" name="fvalor" />
             </div>
             <br />    
             <div>
                 <label for="codigo">Código do ativo: </label>
                 <br />
-                <input type="text" id="codigo" />
+                <input type="text" id="codigo" name="fcodigo" />
             </div>
             <br />
             <div>
                 <label for="QntdA">Quantidade de Ações: </label>
                 <br />
-                <input type="number" id="QntdA" />
+                <input type="number" id="QntdA" name="fquantidade" />
             </div>
             <br />
             <div>
                 <label for="taxa"> Taxa de Corretagem(%): </label>
                 <br />
-                <input type="text" id="taxa" />
+                <input type="text" id="taxa" name="ftaxa"/>
             </div>
             <div class="op">
                 <p>Tipo de Operação:</p>
                 <span>
-                    <select name="tipoOpercao" id="tipoOperacao">
+                    <select name="foperacao" id="tipoOperacao">
                         <option value="COMPRA">COMPRA</option>
                         <option value="VENDA">VENDA</option>
                     </select>
@@ -51,7 +51,7 @@
             </div>
             <br />
             <div class="botao">
-                <button onclick="imprimir()">ENVIAR</button>
+                <button type="submit">ENVIAR</button>
             </div>
         </div>
         <div>
