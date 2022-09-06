@@ -1,0 +1,20 @@
+{
+  "acoes": [
+    {
+      "codigo": "ITSA4",
+      "precoUnitatio": 9.50,
+      "quantidade": 100,
+      "operacao":"COMPRA",
+      "taxaCorretagem": 2.50,
+      "id": 2
+    },
+    {
+      "codigo": "BSA3",
+      "precoUnitatio": 20,
+      "quantidade": 100,
+      "operacao":"VENDA",
+      "taxaCorretagem": 2.50,
+      "id": 2
+    }
+  ]
+}
