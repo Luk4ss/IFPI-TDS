@@ -74,7 +74,7 @@ class Clinica:
                 if mes == mes_consulta and consulta.pago and consulta.medico.nome == 'Dra. Vilma' and not consulta.cancelada:
                     saldo_m2 += 200
             print(f'>> Faturamento do Dr. Octopus: R$ {saldo_m1}')
-            print(f'>> Faturamento da Dra. Vilma: R$ {saldo_m2}')
+            print(f'>> Faturamento da Dra. Vilma: R$ {saldo_m2}\n')
 
 
 
@@ -133,7 +133,7 @@ def menu():
 
 
 def agendamento_consulta(cd, clinic):
-    print(' >>>> PREENCHA OS DADOS ABAIXO PARA O AGENDAMENTO DA CONSULTA <<<< ')
+    print('\n >>>> PREENCHA OS DADOS ABAIXO PARA O AGENDAMENTO DA CONSULTA <<<< ')
     nome = input('Digite o seu nome: ')
     cpf =  input('Digite o seu CPF: ')
     sexo = input('Digite o seu sexo: ')
@@ -158,7 +158,7 @@ def agendamento_consulta(cd, clinic):
     medico = Medico(md_nome)
     consulta = Consulta(paciente, medico, dt_consulta)
     clinic.salvar_registro({cd: consulta}) 
-    print(" ### DADOS DO AGENDAMENTO ###")
+    print("\n ### DADOS DO AGENDAMENTO ###")
     print(paciente)
     print(medico)
     print('>>>> Sua consulta foi agendada para: ' + dt_consulta)
@@ -170,7 +170,7 @@ def pagar_consulta(clinic):
     cd = int(input('Digite o código da consulta que deseja pagar: '))
     reg = clinic.registro.get(cd)
     if reg is not None and not reg.cancelada:
-        print(" ### DADOS DA CONSULTA ###")
+        print("\n ### DADOS DA CONSULTA ###")
         print(f'Nome do paciente: {reg.paciente.nome}')
         print(f'Nome do médico: {reg.medico.nome}')
         print(f'Data da consulta: {reg.dt_consulta}')
@@ -179,9 +179,9 @@ def pagar_consulta(clinic):
         reg.medico.saldo = 200
         reg.pago = True
     elif reg is None:
-        print('>>> CONSULTA NÃO ENCONTRADA PARA O CÓDIGIO INFORMADO!\n')
+        print('\n>>> CONSULTA NÃO ENCONTRADA PARA O CÓDIGIO INFORMADO!\n')
     else:
-        print('>>> NÃO É POSSÍVEL PAGAR UMA CONSULTA QUE FOI CANCELADA!\n')
+        print('\n>>> NÃO É POSSÍVEL PAGAR UMA CONSULTA QUE FOI CANCELADA!\n')
 
     
 
@@ -189,7 +189,7 @@ def cancelar_consulta(cd, clinic):
     cd = int(input('Digite o código da consulta que deseja cancelar: '))
     reg = clinic.registro.get(cd)
     if reg is not None and reg.pago and len(reg.dt_retorno) < 2:
-        print(" ### DADOS DO CANCELAMENTO ###")
+        print("\n ### DADOS DO CANCELAMENTO ###")
         print(f'Nome do paciente: {reg.paciente.nome}')
         print(f'Nome do médico: {reg.medico.nome}')
         print(f'Data da consulta: {reg.dt_consulta}')
@@ -199,18 +199,18 @@ def cancelar_consulta(cd, clinic):
         reg.cancelada = True
         reg.pago = False
     elif reg is None:
-        print('>>> CONSULTA NÃO ENCONTRADA PARA O CÓDIGO INFORMADO')
+        print('\n>>> CONSULTA NÃO ENCONTRADA PARA O CÓDIGO INFORMADO\n')
     elif len(reg.dt_retorno) > 1:
-        print('>>> VOCÊ NÃO PODE CANCELAR UMA CONSULTA QUE JÁ FOI REALIZADA')
+        print('\n>>> VOCÊ NÃO PODE CANCELAR UMA CONSULTA QUE JÁ FOI REALIZADA\n')
     else:
-        print('ESTÁ CONSULTA AINDA NÃO ESTÁ PAGA. POR FAVOR, PRIMEIRO PAGUE A CONSULTA PARA OBTER O DIREITO DE RETORNO.')
+        print('\nESTÁ CONSULTA AINDA NÃO ESTÁ PAGA. POR FAVOR, PRIMEIRO PAGUE A CONSULTA PARA OBTER O DIREITO DE RETORNO.\n')
         return False
 
 
 
 def agendamento_retorno(cd, clinic):
 
-    print('>>> AGENDAMENTO DO RETORNO <<<')
+    print('\n>>> AGENDAMENTO DO RETORNO <<<')
     cd_busca = int(input('Digite o código da consulta : '))
     reg = clinic.registro.get(cd_busca)
     if reg is not None and reg.pago and not reg.cancelada:
@@ -222,18 +222,18 @@ def agendamento_retorno(cd, clinic):
             if datetime.strptime(reg.dt_consulta, "%d/%m/%Y") < datetime.strptime(dt_retorno, "%d/%m/%Y"):
                 break
         reg.dt_retorno = dt_retorno
-        print('### DADOS DO AGENDAMENTO ###')
+        print('\n### DADOS DO AGENDAMENTO ###')
         print(f'Paciente: {reg.paciente.nome}')
         print(f'Médico: {reg.medico.nome}')
         print(f'RETORNO AGENDADO COM SUCESSO PARA O DIA {dt_retorno}!!\n')
         return True
     elif reg is None:
-        print('>>> CONSULTA NÃO ENCONTRADA PARA O CÓDIGO INFORMADO')
+        print('\n>>> CONSULTA NÃO ENCONTRADA PARA O CÓDIGO INFORMADO\n')
     elif reg.cancelada:
-        print('ESTÁ CONSULTA ESTÁ CANCELADA. NÃO É POSSÍVEL AGENDAR UM RETORNO PARA ELA.')
+        print('\nESTÁ CONSULTA ESTÁ CANCELADA. NÃO É POSSÍVEL AGENDAR UM RETORNO PARA ELA.\n')
         return False
     else:
-        print('ESTÁ CONSULTA AINDA NÃO ESTÁ PAGA. POR FAVOR, PRIMEIRO PAGUE A CONSULTA PARA OBTER O DIREITO DE RETORNO.')
+        print('\nESTÁ CONSULTA AINDA NÃO ESTÁ PAGA. POR FAVOR, PRIMEIRO PAGUE A CONSULTA PARA OBTER O DIREITO DE RETORNO.\n')
         return False
     
 #endregion
