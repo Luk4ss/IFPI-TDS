@@ -188,7 +188,6 @@ def pagar_consulta(clinic):
 def cancelar_consulta(cd, clinic):
     cd = int(input('Digite o código da consulta que deseja cancelar: '))
     reg = clinic.registro.get(cd)
-    print(reg.dt_retorno)
     if reg is not None and reg.pago and len(reg.dt_retorno) < 2:
         print(" ### DADOS DO CANCELAMENTO ###")
         print(f'Nome do paciente: {reg.paciente.nome}')
