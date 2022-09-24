@@ -7,6 +7,5 @@ export interface Acao{
     quantidade: number,
     taxaCorretagem: number,
     operacao: string,
-    data: Date
-
+    data: string
 }

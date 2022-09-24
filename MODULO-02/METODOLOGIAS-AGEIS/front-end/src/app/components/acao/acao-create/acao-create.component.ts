@@ -19,7 +19,7 @@ export class AcaoCreateComponent implements OnInit {
     quantidade: 0,
     taxaCorretagem: 0.0,
     operacao: 'COMPRA',
-    data: new Date()
+    data: '01/01/1991'
 
   }
   constructor(private router:Router, private acaoService: AcaoService) { }
@@ -42,7 +42,6 @@ export class AcaoCreateComponent implements OnInit {
       }
     )
   }
-
 
 
   navigateToAcoes():void{
