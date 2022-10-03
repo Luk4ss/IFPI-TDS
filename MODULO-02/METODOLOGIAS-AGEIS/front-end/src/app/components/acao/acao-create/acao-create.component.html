@@ -5,14 +5,15 @@
     <form>
         <mat-form-field>
             <input 
-            type="datetime" 
+            type="text" 
             placeholder="Data da transação" 
             name="valorUnitario"
             [(ngModel)]="acao.data"
-            matInput>
+            matInput
+            required>
         </mat-form-field>
         <mat-form-field>
-            <input type="text" placeholder="Codigo" name="codigo" [(ngModel)]="acao.codigo" matInput>
+            <input type="text" placeholder="Codigo" name="codigo" [(ngModel)]="acao.codigo" matInput required>
         </mat-form-field>
         <mat-form-field>
             <input 
@@ -20,7 +21,8 @@
             placeholder="Valor Unitário (R$)" 
             name="valorUnitario"
             [(ngModel)]="acao.valorUnitario"
-            matInput>
+            matInput
+            required>
         </mat-form-field>
         <mat-form-field>
             <input 
@@ -28,7 +30,8 @@
             placeholder="Quantidade" 
             name="quantidade"
             [(ngModel)]="acao.quantidade"
-            matInput>
+            matInput
+            required>
         </mat-form-field>
         <mat-form-field>
             <input 
@@ -36,7 +39,8 @@
             placeholder="Taxa Corretagem (R$)" 
             name="corretagem"
             [(ngModel)]="acao.taxaCorretagem"
-            matInput>
+            matInput
+            required>
         </mat-form-field>
        <p>## TIPO DE OPERAÇÃO ##</p>
         <mat-radio-group aria-label="TIPO DE OPERAÇÃO" id="op" aria-placeholder="TIPO DE OPERAÇÃO">

@@ -2,14 +2,7 @@
     position: fixed;
     bottom: 0;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     margin: 0;
     padding: 0;
-}
-
-.footer > span{
-    /*margin: 0 128px 0 0;*/
-    padding-right: 128px;
-    font-size: 1.1rem;
-    font-weight: 300;
 }

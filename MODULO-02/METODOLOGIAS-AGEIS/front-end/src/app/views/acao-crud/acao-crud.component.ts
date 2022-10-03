@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { HeaderService } from 'src/app/components/template/header/header.service';
 
 @Component({
   selector: 'app-acao-crud',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AcaoCrudComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router, private headerService:HeaderService) { 
+    this.headerService.headerData = {
+      title: 'AÇÕES',
+      icon: 'attach_money',
+      routeUrl: '/acoes'
+    }
+  }
 
   ngOnInit(): void {
   }
