@@ -1,0 +1,35 @@
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.info{
+    margin: 10px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;    
+    border: 2px solid blue;
+    width: 350px;
+}
+
+input[type="text"]{
+    margin: 5px;
+}
+
+.esconder{
+    display: None;
+}
+
+.saida{
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid red;
+    width: 75%;
+}

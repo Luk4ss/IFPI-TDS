@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/app.js" defer></script>
+    <title>CALCULADORA DE COMBUSTÍVEL</title>
+</head>
+<body>
+    <main>        
+        <div class="info">
+            <h3>DADOS</h3>
+            <label for="pgasolina">Preço da Gasolina (R$/L)</label>
+            <input type="text" name="pgasolina" id="pgasolina" placeholder="R$/L">
+            <label for="palcool">Preço do Álcool (R$/L)</label>
+            <input type="text" name="palcool" id="palcool" placeholder="R$/L">
+            <label for="perfgasolina">Perfomance Gasolina (km/L)</label>
+            <input type="text" name="perfgasolina" id="perfgasolina" placeholder="km/L">
+            <label for="grana">Dinheiro Disponível (R$):</label>
+            <input type="text" name="grana" id="grana" placeholder="R$">
+            <label for="destino">Destino:</label>
+            <input type="text" name="destino" id="destino" placeholder="Nome da Cidade">
+            <label for="km">Total de Km:</label>
+            <input type="text" name="km" id="km" placeholder="quilometros">
+            <button class="btn_enviar" id="btn_enviar" onclick="enviar()">Enviar</button>
+        </div>
+        <div class="esconder" id="saida">
+            <h3>## SAÍDA ##</h3>
+            <p id="info_combustivel"></p> 
+            <p id="info_precos"></p>           
+            <p id="info_saldo"></p>
+        </div>
+    </main>
+</body>
+</html>
