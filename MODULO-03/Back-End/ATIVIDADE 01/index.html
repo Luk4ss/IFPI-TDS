@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/css/global.css">
+    <title>REAJUSTE SALARIAL</title>
+</head>
+<body>
+    <script src="public/js/app.js" defer></script>
+    <main>
+        <fieldset>
+            <img src="public/img/img_tabajara.jpg" alt="Logo da Organização img_tabajara">
+            <br>
+            <label for="salario">Informe o salário atual do colaborador: </label>
+            <input type="text" name="salario" id="salario" placeholder="Ex: 450">
+            <br>
+            <button onclick="reajustar()">Reajustar</button>
+            <br>
+            <div id="resultado" class="esconder">
+                <p id="salarioInicial">Salário antes do reajuste: </p>
+                <p id="percentualAplicado">Percentual do aumento aplicado: </p>
+                <p id="valorAumento">Valor do aumento:  </p>
+                <p id="novoSalario">Novo Salário, após o aumento: </p>
+            </div>
+            <div id="erros" class="esconder">
+                <p id="error" class="erros"></p>
+            </div>
+        </fieldset>
+    </main>
+</body>
+</html>

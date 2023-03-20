@@ -1,0 +1,25 @@
+fieldset{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    justify-content: center;
+    max-width: 25rem;
+    border: solid 2px blue;
+}
+
+.esconder{
+    display: none;
+}
+
+.mostrar{
+    display: block;
+}
+
+.erros{
+    color: red;
+    font-weight: bolder;
+}
+
+img{
+    max-width: 25rem;
+}
