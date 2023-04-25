@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'dart:async';
+import 'lista_usuarios.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -31,7 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
       Database db = await (openDatabase(path, version: 1,
           onCreate: (db, versaoRecente) async {
-        String sql = "CREATE TABLE USERS(email VARCHAR(30), password VARCHAR(16))";
+        String sql = "CREATE TABLE USERS(email UNIQUE VARCHAR(30), password VARCHAR(16))";
         await db.execute(sql);
       }));
       print('Banco:  ${db.isOpen.toString()}');
@@ -142,7 +143,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             const SizedBox(height: 50,),
             ElevatedButton(
-              onPressed: _salvar, 
+              onPressed: (){
+                _salvar();
+                Navigator.pushNamed(context, "/listar");
+              }, 
               style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple),
               child: const Text('Sign Up', style: TextStyle(
                     fontSize: 14,

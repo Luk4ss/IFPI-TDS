@@ -1,5 +1,7 @@
+import 'package:app_persist/views/lista_usuarios.dart';
 import 'package:flutter/material.dart';
 import 'views/my_home_page.dart';
+import 'views/lista_usuarios.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,6 +20,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Sign Up'),
+      routes: {
+        "/listar": (context) => ListaUsuarios(),
+      },
     );
   }
 }
