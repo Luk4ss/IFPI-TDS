@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1057911845144",
+    "project_id": "app-final-ifpi-e4c54",
+    "storage_bucket": "app-final-ifpi-e4c54.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1057911845144:android:a71158e00592347d33ae6d",
+        "android_client_info": {
+          "package_name": "com.example.app_final"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZMJFk5ipRJaJ8xpCtot5Lu-CO9kjNHtI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

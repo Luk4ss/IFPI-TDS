@@ -8,6 +8,11 @@ class Login extends StatelessWidget {
   final TextEditingController _loginController = TextEditingController();
   final TextEditingController _senhaController = TextEditingController();
 
+  bool _verificaSeExisteUsuarioCadastro(){
+    String login = _loginController.text;
+    String senha = _loginController.text;
+    return LoginController(login: login, senha: senha).existeUsuario(); 
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,14 +57,10 @@ class Login extends StatelessWidget {
             ),
             const SizedBox(height: 15.0,),
             ElevatedButton(
-                onPressed: (){
-                  String login = _loginController.text;
-                  String senha = _loginController.text;
-                  // var loginController = LoginController(login: login, senha: senha);
-                  // if(loginController.existeUsuario()){
-                  //   Navigator.pushNamed(context, "cadastro");
-                  // }   
-                  Navigator.pushNamed(context, "menu");               
+                onPressed: (){                  
+                  if(_verificaSeExisteUsuarioCadastro()){
+                    Navigator.pushNamed(context, "menu");
+                  }                                 
                 }, 
                 child: const Text('Fazer login')),
             TextButton(
