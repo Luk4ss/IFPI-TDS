@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../Controllers/cadastro_controller.dart';
+
 class Cadastro extends StatelessWidget {
   Cadastro({super.key});
 
@@ -10,6 +12,21 @@ class Cadastro extends StatelessWidget {
   final String mensagem="";
   final Color? cor = Colors.red;
 
+  Future<bool> _fazerCadastro() async{
+
+
+    if(_loginController.text.isEmpty || _senhaController.text.isEmpty || _senhaConfirmaController.text.isEmpty){
+      return false;
+    }
+
+    if(_senhaController.text != _senhaConfirmaController.text){
+      return false;
+    }
+
+    CadastroController cadastroController = CadastroController(_loginController.text, _senhaController.text );
+    return await cadastroController.cadastraUsuario();
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +79,11 @@ class Cadastro extends StatelessWidget {
               style: TextStyle(color: cor),),
             const SizedBox(height: 15.0,),
             ElevatedButton(
-                onPressed: (){}, 
+                onPressed: () async {
+                    if(await _fazerCadastro()){
+                        Navigator.pushNamed(context, "login");
+                    }
+                }, 
                 child: const Text('Fazer cadastro')),
             TextButton(
               onPressed: (){

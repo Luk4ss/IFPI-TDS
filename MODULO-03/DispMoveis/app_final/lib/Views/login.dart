@@ -8,10 +8,15 @@ class Login extends StatelessWidget {
   final TextEditingController _loginController = TextEditingController();
   final TextEditingController _senhaController = TextEditingController();
 
-  bool _verificaSeExisteUsuarioCadastro(){
-    String login = _loginController.text;
-    String senha = _loginController.text;
-    return LoginController(login: login, senha: senha).existeUsuario(); 
+  Future<bool> _existeUsuarioCadastrado() async{
+    
+    if(_loginController.text.isEmpty || _senhaController.text.isEmpty){
+      return false;
+    }
+
+    var loginController = LoginController(_loginController.text,_senhaController.text); 
+    return await loginController.verficaSeExisteUsuario();
+
   }
 
   @override
@@ -57,8 +62,10 @@ class Login extends StatelessWidget {
             ),
             const SizedBox(height: 15.0,),
             ElevatedButton(
-                onPressed: (){                  
-                  if(_verificaSeExisteUsuarioCadastro()){
+                onPressed: ()async{                
+                  if(await _existeUsuarioCadastrado()){
+                    _loginController.text = "";
+                    _senhaController.text = "";
                     Navigator.pushNamed(context, "menu");
                   }                                 
                 }, 
