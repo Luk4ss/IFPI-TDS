@@ -9,24 +9,26 @@ class CadastroController{
   
 
   Future<bool> cadastraUsuario() async{    
-
-    final usuario  =  await Banco.db().child(login).get();
     
-    if(usuario.exists){
-      return false;
+    final tabelaUsuarios =  await Banco.db().get();
+
+    //Caso existe usuários cadastrados, verificar se o login já existe para alguém já cadastrado.
+    if(tabelaUsuarios.children.isNotEmpty){
+      for(var usuario in tabelaUsuarios.children){        
+        if(usuario.child('login').value == login){   
+          return false;
+        }
+      }
     }
+        
+    final newRef = Banco.db().push();
 
-    final newRef = Banco.db().child(login);
-
-    return await newRef.set({      
+    return await newRef.set({  
       "login": login,
-      "senha": senha,
-      "latidude": 0.0,
-      "longitude": 0.0      
+      "senha": senha,   
     })
     .then((_) => true)
     .catchError((_) => false);
-
 
   }
 

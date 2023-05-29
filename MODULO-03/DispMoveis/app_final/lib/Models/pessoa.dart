@@ -1,9 +1,10 @@
-class Pessoa{
-  int? id;
-  String login = "";
-  String senha = "";
+class Pessoa{ 
+  String id;
+  String login;
+  String senha;
   double? latitude;
   double? longitude;
+  List<Pessoa> contatos = [];
 
-  Pessoa({id, login="", senha="", latitude, longitude});
+  Pessoa({this.id = "", this.login="", this.senha = "", this.latitude = 0.0, this.longitude = 0.0});
 }

@@ -1,5 +1,6 @@
 
 import 'package:app_final/Controllers/login_controller.dart';
+import 'package:app_final/Models/pessoa.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatelessWidget {
@@ -15,7 +16,10 @@ class Login extends StatelessWidget {
     }
 
     var loginController = LoginController(_loginController.text,_senhaController.text); 
-    return await loginController.verficaSeExisteUsuario();
+    Pessoa user = await loginController.retornaUsuarioCadastrado();
+
+    //Se o 'id' for vazio, quer dizer que não encontrou usuário no banco.
+    return user.id.isNotEmpty;
 
   }
 
