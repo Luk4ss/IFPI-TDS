@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../Controllers/cadastro_controller.dart';
 
 class Cadastro extends StatefulWidget {
-  Cadastro({super.key});
+  const Cadastro({super.key});
 
   @override
   State<Cadastro> createState() => _CadastroState();
@@ -137,7 +137,7 @@ class _CadastroState extends State<Cadastro> {
               onPressed: () async {
                 if (await _fazerCadastro()) {
                   _limparCampos();
-                  Navigator.pushNamed(context, "login");
+                  Navigator.pushNamed(context, "/login");
                 }
               },
               child: const Text('Fazer cadastro')),

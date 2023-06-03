@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 
 import '../Data/banco.dart';
+import '../Models/contato.dart';
 import '../Models/pessoa.dart';
 
 class LoginController{
@@ -9,17 +10,17 @@ class LoginController{
 
   LoginController(this.login,this.senha);
 
-  Future<Pessoa> retornaUsuarioCadastrado() async{  
+  Future<Pessoa?> retornaUsuarioCadastrado() async{  
     
     if(login.isEmpty || senha.isEmpty){
-      return Pessoa();
+      return null;
     }    
     
     final tabelaUsuarios =  await Banco.db().get();
 
     //Caso não exista usários no banco, então retorna uma pessoa com id vazio
     if(tabelaUsuarios.children.isEmpty){
-      return Pessoa();
+      return null;
     }
 
     bool existeUsuario = false;
@@ -36,12 +37,12 @@ class LoginController{
 
     //se não existir o login, então retorna uma pessoa com id vazio
     if(!existeUsuario){
-      return Pessoa();
+      return null;
     }   
 
     //o login existe, mas senha digitada está errada
     if(user.child('senha').value != senha){
-      return Pessoa();
+      return null;
     }
 
     Pessoa pessoa = Pessoa(
@@ -56,9 +57,9 @@ class LoginController{
     if(user.child('longitude').exists){
       pessoa.longitude = user.child('longitude').value as double?;
     }
-    if(user.child('contatos').exists){
-      pessoa.contatos = user.child('contatos').value as List<Pessoa>;
-    }
+    // if(user.child('contatos').exists){
+    //   pessoa.contatos = user.child('contatos').value as List<Contato>;
+    // }
 
     return pessoa;
   }

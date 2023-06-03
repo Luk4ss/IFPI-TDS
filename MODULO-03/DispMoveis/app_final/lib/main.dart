@@ -1,4 +1,6 @@
+import 'package:app_final/Models/pessoa.dart';
 import 'package:app_final/Views/cadastro.dart';
+import 'package:app_final/Views/cadastro_contato.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -28,11 +30,27 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(        
         primarySwatch: Colors.blue,
       ),
-      home: Login(title: 'Tela de Login'),
+      home: const Login(title: 'Tela de Login'),
+      onGenerateRoute: (settings) {
+        if(settings.name == "/menu"){
+          final args = settings.arguments as Pessoa; 
+
+          return MaterialPageRoute(
+            builder: (context) {
+            return Menu(pessoa: args);
+          });
+        }
+        if(settings.name == "/cadastroContato"){
+          final args = settings.arguments as String;
+          return MaterialPageRoute(
+            builder: (context) {
+            return CadastroContato(id: args);
+          });
+        }
+      },
       routes: {
-        "login":(context) => Login(),
-        "cadastro":(context) => Cadastro(),
-        "menu":(context) => const Menu()
+        "/login":    (context) => const Login(),
+        "/cadastro": (context) => const Cadastro(),
       },
     );
   }

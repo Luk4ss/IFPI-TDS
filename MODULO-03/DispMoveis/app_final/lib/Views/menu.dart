@@ -1,8 +1,13 @@
 
 import 'package:flutter/material.dart';
 
+import '../Models/pessoa.dart';
+
 class Menu extends StatelessWidget {
-  const Menu({super.key});
+  
+  final Pessoa pessoa;
+
+  const Menu({super.key, required this.pessoa});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +34,9 @@ class Menu extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(6.0),
                   child: ElevatedButton(
-                  onPressed: (){},
+                  onPressed: (){
+                    Navigator.pushNamed(context, "/cadastroContato", arguments: pessoa.id);
+                  },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.purple,
                       padding: const EdgeInsets.all(45),

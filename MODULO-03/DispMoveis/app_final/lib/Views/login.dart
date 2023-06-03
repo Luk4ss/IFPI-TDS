@@ -16,6 +16,7 @@ class _LoginState extends State<Login> {
   String _msgCampoLogin = "";
   String _msgCampoSenha = "";
   String _msgExisteUsuario = "";
+  Pessoa? pessoa;
 
   void _limparCampos() {
     setState(() {   
@@ -52,10 +53,10 @@ class _LoginState extends State<Login> {
 
     var loginController =
         LoginController(_loginController.text, _senhaController.text);
-    Pessoa user = await loginController.retornaUsuarioCadastrado();
+    pessoa = await loginController.retornaUsuarioCadastrado();
 
-    //Se o 'id' for vazio, quer dizer que não encontrou usuário no banco.
-    return user.id.isNotEmpty;
+    //Se o pessoa é diferente de nulo, é porque ela existe no banco
+    return pessoa != null;
   }
 
   @override
@@ -121,7 +122,7 @@ class _LoginState extends State<Login> {
               onPressed: () async {
                 if (await _existeUsuarioCadastrado()) {
                   _limparCampos();
-                  Navigator.pushNamed(context, "menu");
+                  Navigator.pushNamed(context, "/menu", arguments: this.pessoa );
                 } else if (_msgCampoLogin.isEmpty && _msgCampoSenha.isEmpty) {
                   _msgExisteUsuario = "usuário não cadastrado!";
                 }
@@ -130,7 +131,7 @@ class _LoginState extends State<Login> {
           TextButton(
               onPressed: () {
                 _limparCampos();
-                Navigator.pushNamed(context, "cadastro");
+                Navigator.pushNamed(context, "/cadastro");
               },
               child: const Text(
                 'Não possui conta? Cadastre-se!',
