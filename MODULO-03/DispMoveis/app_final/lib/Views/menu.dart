@@ -23,7 +23,9 @@ class Menu extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(6.0),
                 child: ElevatedButton(
-                  onPressed: (){},
+                  onPressed: (){
+                    Navigator.pushNamed(context, "/mapa");
+                  },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.purple,
                       padding: const EdgeInsets.all(60),
