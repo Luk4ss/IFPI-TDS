@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
             return Menu(pessoa: args);
           });
         }
+
         if(settings.name == "/cadastroContato"){
           final args = settings.arguments as String;
           return MaterialPageRoute(
@@ -48,11 +49,18 @@ class MyApp extends StatelessWidget {
             return CadastroContato(id: args);
           });
         }
+
+        if(settings.name == "/mapa"){
+          final args = settings.arguments as String;
+          return MaterialPageRoute(
+            builder: (context) {
+            return Mapa(id: args);
+          });
+        }
       },
       routes: {
         "/login":    (context) => const Login(),
         "/cadastro": (context) => const Cadastro(),
-        "/mapa": (context) => const Mapa()
       },
     );
   }
