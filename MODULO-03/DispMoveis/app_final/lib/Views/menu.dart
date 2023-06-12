@@ -19,6 +19,7 @@ class Menu extends StatelessWidget {
         children: [
           const SizedBox(height: 280,),
           Row(
+            mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
                 padding: const EdgeInsets.all(6.0),
@@ -28,10 +29,11 @@ class Menu extends StatelessWidget {
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.purple,
-                      padding: const EdgeInsets.all(60),
+                      padding: const EdgeInsets.all(40),
                       fixedSize: const Size(165, 150),
                   ), 
-                  child: const Text('MAPA')),
+                  child: const FittedBox(fit: BoxFit.cover ,child: Text('MAPA'))
+                ),
               ),               
                 Padding(
                   padding: const EdgeInsets.all(6.0),
@@ -41,36 +43,41 @@ class Menu extends StatelessWidget {
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.purple,
-                      padding: const EdgeInsets.all(45),
+                      padding: const EdgeInsets.all(40),
                       fixedSize: const Size(165, 150),                     
                   ), 
-                  child: const Text('CONTATOS')
+                  child: const FittedBox(fit: BoxFit.cover ,child: Text('CADASTRAR')),  
                   ),
                 ),
             ],
           ),
           Padding(            
             padding: const EdgeInsets.all(6.0),
-            child: Row(            
+            child: Row(      
+              mainAxisSize: MainAxisSize.max,      
               children: [
                 ElevatedButton(
-                  onPressed: (){},                   
+                  onPressed: (){
+                    Navigator.pushNamed(context, "/meusContatos", arguments: pessoa.id);
+                  },                   
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.purple,
-                    padding: const EdgeInsets.all(60),
+                    padding: const EdgeInsets.all(40),
                     fixedSize: const Size(165, 150),
                   ),
-                  child: const Text('EXTRA'),               
+                  child: const FittedBox(fit: BoxFit.cover ,child: Text('CONTATOS')),               
                   ),
                   const SizedBox(width: 12,),
                   ElevatedButton(
-                  onPressed: (){},                 
+                  onPressed: (){
+                    
+                  },                 
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.purple,
-                    padding: const EdgeInsets.all(60),
+                    padding: const EdgeInsets.all(40),
                     fixedSize: const Size(165, 150),
                   ),
-                  child: const Text('EXTRA'),                
+                  child: const FittedBox(fit: BoxFit.cover ,child: Text('EXTRA')),                
                   )
               ],
             ),

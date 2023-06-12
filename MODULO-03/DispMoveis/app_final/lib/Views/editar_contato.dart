@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-
-import '../Controllers/cadastro_contato_controller.dart';
+import '../Controllers/editar_contato_controller.dart';
 import '../Models/contato.dart';
 
-class CadastroContato extends StatefulWidget {
+class EditarContato extends StatefulWidget {
   
   final String id;
+  final String idContato;
+  final Contato contato;
 
-  const CadastroContato({super.key, required this.id});
+  const EditarContato({super.key, required this.id, required this.idContato, required this.contato});
 
   @override
-  State<CadastroContato> createState() => _CadastroContatoState();
+  State<EditarContato> createState() => _EditarContatoState();
 }
 
-class _CadastroContatoState extends State<CadastroContato> {
+class _EditarContatoState extends State<EditarContato> {
   final TextEditingController _nomeController = TextEditingController();
   final TextEditingController _telefoneController = TextEditingController();
   final TextEditingController _latitudeController = TextEditingController();
@@ -21,7 +22,20 @@ class _CadastroContatoState extends State<CadastroContato> {
   String mensagem = "";
   String _msgNome = "";
 
-  Future<bool> _cadastrarNovoContato() async {
+  @override
+    initState(){
+      super.initState();
+        _nomeController.text = widget.contato.nome;
+        _telefoneController.text = widget.contato.telefone as String;
+        if(widget.contato.latitude != null){
+          _latitudeController.text = widget.contato.latitude.toString();
+        }
+        if(widget.contato.longitude != null){
+          _longitudeController.text = widget.contato.longitude.toString();
+        }
+    }
+
+  Future<bool> _editarContato() async {
     if (_nomeController.text.isEmpty) {
       setState(() {        
         _msgNome = "Preencha o nome do contato!";
@@ -30,21 +44,21 @@ class _CadastroContatoState extends State<CadastroContato> {
     }
     setState(() {
       _msgNome = "";
-    });
+    });    
 
     String nome = _nomeController.text;
     String telefone = _telefoneController.text;
     double? latitude =  double.tryParse(_latitudeController.text);
     double? longitude = double.tryParse(_longitudeController.text);
     var contato = Contato(nome, telefone: telefone, latitude: latitude, longitude: longitude );
-    var controller = ContatoCadastroController(widget.id, contato);
-    return await controller.cadastrarNovoContato();
+    var controller = EditarContatoController(id: widget.id, idContato:  widget.idContato , contato: widget.contato);
+    return await controller.editarContato();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Novo Contato')),
+      appBar: AppBar(title: const Text('Editar Contato')),
       body: SingleChildScrollView(
           child: Column(
         children: <Widget>[
@@ -109,7 +123,7 @@ class _CadastroContatoState extends State<CadastroContato> {
           ),
           ElevatedButton(
               onPressed: () {
-                _cadastrarNovoContato()
+                _editarContato()
                 .then(
                     (value) { 
                       if(value) {
@@ -129,7 +143,12 @@ class _CadastroContatoState extends State<CadastroContato> {
                   });
                 });
               },
-              child: const Text('Cadastrar Contato')),
+              child: const Text('Salvar Alterações')),
+          ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+              onPressed: () {                
+              },
+              child: const Text('Deletar Contato')),
           TextButton(
               onPressed: () {
                 _msgNome = "";

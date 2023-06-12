@@ -1,7 +1,10 @@
 import 'package:app_final/Models/pessoa.dart';
+import 'package:app_final/Util/extrair_paramentros.dart';
 import 'package:app_final/Views/cadastro.dart';
 import 'package:app_final/Views/cadastro_contato.dart';
+import 'package:app_final/Views/editar_contato.dart';
 import 'package:app_final/Views/mapa.dart';
+import 'package:app_final/Views/meus_contatos.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -55,6 +58,22 @@ class MyApp extends StatelessWidget {
           return MaterialPageRoute(
             builder: (context) {
             return Mapa(id: args);
+          });
+        }
+
+         if(settings.name == "/meusContatos"){
+          final args = settings.arguments as String;
+          return MaterialPageRoute(
+            builder: (context) {
+            return MeusContatos(id: args);
+          });
+        }
+
+        if(settings.name == "/editarContato"){
+          final args = settings.arguments as ExtrairParametros;
+          return MaterialPageRoute(
+            builder: (context) {
+            return EditarContato(id: args.id, idContato: args.idContato, contato: args.contato,);
           });
         }
       },
