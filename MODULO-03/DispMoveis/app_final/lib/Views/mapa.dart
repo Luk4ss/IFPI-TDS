@@ -36,11 +36,12 @@ class _MapaState extends State<Mapa> {
     int quantidade = contatos.children.length;    
 
     for(int i = 0; i < quantidade; i++){
-      DataSnapshot contato = contatos.child(i.toString());      
-      String idMarcador  = contato.child('nome').value as String;
-      double? latitude   = contato.child('latitude').exists  ? contato.child('latitude').value as double : null;
-      double? longitude  = contato.child('longitude').exists ? contato.child('longitude').value as double : null;
-      String telefone    = contato.child('telefone').value as String;
+      DataSnapshot contato = contatos.child(i.toString());
+      if(contato.exists){
+        String idMarcador  = contato.child('nome').value as String;
+        double? latitude   = contato.child('latitude').exists  ? contato.child('latitude').value as double : null;
+        double? longitude  = contato.child('longitude').exists ? contato.child('longitude').value as double : null;
+        String telefone    = contato.child('telefone').value as String;
       if(telefone.isEmpty){
         telefone = 'Telefone não cadastrado';
       }
@@ -51,10 +52,11 @@ class _MapaState extends State<Mapa> {
             position: LatLng(latitude, longitude),
             infoWindow: InfoWindow(title: idMarcador, snippet: telefone),
             icon: BitmapDescriptor.defaultMarker
-          ),
-          
+          ),        
         );
       }    
+      }      
+      
       
     }
    

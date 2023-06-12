@@ -21,22 +21,25 @@ class _MeusContatosState extends State<MeusContatos> {
     DataSnapshot contatos = await Banco.recuperaContatosDoUsuario(widget.id);
     int quantidade = contatos.children.length;   
     for(int i = 0; i < quantidade; i++){
-      DataSnapshot contato = contatos.child(i.toString());      
-      String nome  = contato.child('nome').value as String;
-      double? latitude   = contato.child('latitude').exists  ? contato.child('latitude').value as double : null;
-      double? longitude  = contato.child('longitude').exists ? contato.child('longitude').value as double : null;
-      String telefone    = contato.child('telefone').value as String;
-      if(telefone.isEmpty){
-        telefone = "Telefone não cadastrado";
-      }
-      Contato ctt = Contato(nome, latitude: latitude, longitude: longitude, telefone: telefone);
-      listaContatos.add(ctt);
+      DataSnapshot contato = contatos.child(i.toString());
+      if(contato.exists){
+        String nome  = contato.child('nome').value as String;
+        double? latitude   = contato.child('latitude').exists  ? contato.child('latitude').value as double : null;
+        double? longitude  = contato.child('longitude').exists ? contato.child('longitude').value as double : null;
+        String telefone    = contato.child('telefone').value as String;
+        if(telefone.isEmpty){
+          telefone = "Telefone não cadastrado";
+        }
+        Contato ctt = Contato(nome, latitude: latitude, longitude: longitude, telefone: telefone);
+        listaContatos.add(ctt);
+      }      
+      
     }
 
     setState(() {
       _listaContatos = listaContatos;
     });
-
+    
   }
 
   @override
@@ -62,8 +65,15 @@ class _MeusContatosState extends State<MeusContatos> {
               subtitle: Text(contato.telefone as String),
               trailing: const Icon(Icons.edit),
               onTap: () {
-                Navigator.pushNamed(context, "/editarContato", 
-                arguments: ExtrairParametros(id: widget.id, idContato: i.toString(), contato: contato,) );
+                Navigator.
+                pushNamed(
+                  context, "/editarContato", 
+                  arguments: ExtrairParametros(id: widget.id, idContato: i.toString(), contato: contato,))
+                .then((_) {
+                    setState(() {
+                        _carregarContatos();
+                    });
+                });
               },
             ),
           );

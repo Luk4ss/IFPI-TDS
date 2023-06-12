@@ -44,15 +44,21 @@ class _EditarContatoState extends State<EditarContato> {
     }
     setState(() {
       _msgNome = "";
-    });    
+    }); 
 
-    String nome = _nomeController.text;
-    String telefone = _telefoneController.text;
-    double? latitude =  double.tryParse(_latitudeController.text);
-    double? longitude = double.tryParse(_longitudeController.text);
-    var contato = Contato(nome, telefone: telefone, latitude: latitude, longitude: longitude );
-    var controller = EditarContatoController(id: widget.id, idContato:  widget.idContato , contato: widget.contato);
+    Contato contato =  widget.contato;
+    contato.nome = _nomeController.text;
+    contato.telefone = _telefoneController.text;
+    contato.latitude =  double.tryParse(_latitudeController.text);
+    contato.longitude = double.tryParse(_longitudeController.text);    
+    var controller = EditarContatoController(id: widget.id, idContato:  widget.idContato , contato: contato);
     return await controller.editarContato();
+  }
+
+  Future<void> _excluirContato() async {    
+    Contato contato =  widget.contato;   
+    var controller = EditarContatoController(id: widget.id, idContato:  widget.idContato , contato: contato);
+    await controller.excluirContato();
   }
 
   @override
@@ -133,20 +139,22 @@ class _EditarContatoState extends State<EditarContato> {
                       }
                       else {
                         setState(() {
-                          mensagem = "Contato não cadastrado!";
+                          mensagem = "Contato não Editado!";
                         });
                       }
               })
                 .catchError((_){
                   setState((){
-                    mensagem = "Erro ao Cadastrar o contato";
+                    mensagem = "Erro ao editar o contato.";
                   });
                 });
               },
               child: const Text('Salvar Alterações')),
           ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-              onPressed: () {                
+              onPressed: () {       
+                _excluirContato().then((_) => Navigator.pop(context));
+                       
               },
               child: const Text('Deletar Contato')),
           TextButton(
