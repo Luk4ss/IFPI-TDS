@@ -17,12 +17,21 @@ class Menu extends StatelessWidget {
       ),
       body: Column(
         children: [
-          const SizedBox(height: 280,),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: SizedBox(
+            height: 320, 
+            child: Image.asset(
+                      'assets/images/globe.png',
+                      height: 1,                   
+                      fit: BoxFit.cover,
+                    )),
+          ),
           Row(
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: const EdgeInsets.all(6.0),
+                padding: const EdgeInsets.all(16.0),
                 child: ElevatedButton(
                   onPressed: (){
                     Navigator.pushNamed(context, "/mapa", arguments: pessoa.id);
@@ -51,12 +60,12 @@ class Menu extends StatelessWidget {
                 ),
             ],
           ),
-          Padding(            
-            padding: const EdgeInsets.all(6.0),
-            child: Row(      
-              mainAxisSize: MainAxisSize.max,      
-              children: [
-                ElevatedButton(
+          Row(      
+            mainAxisSize: MainAxisSize.max,      
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: ElevatedButton(
                   onPressed: (){
                     Navigator.pushNamed(context, "/meusContatos", arguments: pessoa.id);
                   },                   
@@ -67,8 +76,11 @@ class Menu extends StatelessWidget {
                   ),
                   child: const FittedBox(fit: BoxFit.cover ,child: Text('CONTATOS')),               
                   ),
-                  const SizedBox(width: 12,),
-                  ElevatedButton(
+              ),
+                
+                Padding(
+                  padding: const EdgeInsets.all(6.0),
+                  child: ElevatedButton(
                   onPressed: (){
                     
                   },                 
@@ -78,9 +90,9 @@ class Menu extends StatelessWidget {
                     fixedSize: const Size(165, 150),
                   ),
                   child: const FittedBox(fit: BoxFit.cover ,child: Text('EXTRA')),                
-                  )
-              ],
-            ),
+                  ),
+                )
+            ],
           )
         ]),
     );

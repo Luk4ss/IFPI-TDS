@@ -54,7 +54,7 @@ class _LoginState extends State<Login> {
     var loginController =
         LoginController(_loginController.text, _senhaController.text);
     pessoa = await loginController.retornaUsuarioCadastrado();
-
+    const CircularProgressIndicator();
     //Se o pessoa é diferente de nulo, é porque ela existe no banco
     return pessoa != null;
   }
@@ -66,16 +66,19 @@ class _LoginState extends State<Login> {
       body: SingleChildScrollView(
           child: Column(
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                  height: 150,
-                  child: Image.asset(
-                    'images\\ifpi-logo.jpeg',
-                    fit: BoxFit.cover,
-                  ))
-            ],
+          Padding(
+            padding: const EdgeInsets.all(50.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                    height: 150,
+                    child: Image.asset(
+                      'assets/images/ifpi-logo2.png',
+                      fit: BoxFit.cover,
+                    ))
+              ],
+            ),
           ),
           const SizedBox(
             height: 30.0,
@@ -124,7 +127,7 @@ class _LoginState extends State<Login> {
                   _limparCampos();
                   Navigator.pushNamed(context, "/menu", arguments: this.pessoa );
                 } else if (_msgCampoLogin.isEmpty && _msgCampoSenha.isEmpty) {
-                  _msgExisteUsuario = "usuário não cadastrado!";
+                  _msgExisteUsuario = "Usuário ou senha inválidos!";
                 }
               },
               child: const Text('Fazer login')),

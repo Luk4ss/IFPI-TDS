@@ -20,7 +20,7 @@ class _MapaState extends State<Mapa> {
   final LatLng _center = const LatLng(-5.08917, -42.80194);
 
   void _addCustomIcon(){
-    BitmapDescriptor.fromAssetImage(const ImageConfiguration(), "images\\person.png")
+    BitmapDescriptor.fromAssetImage(const ImageConfiguration(), "assets/images/person.png")
     .then((icon){
       markerIcon = icon;
     });
@@ -51,7 +51,7 @@ class _MapaState extends State<Mapa> {
             markerId: MarkerId(idMarcador),
             position: LatLng(latitude, longitude),
             infoWindow: InfoWindow(title: idMarcador, snippet: telefone),
-            icon: BitmapDescriptor.defaultMarker
+            icon: markerIcon
           ),        
         );
       }    
@@ -85,6 +85,7 @@ class _MapaState extends State<Mapa> {
         onMapCreated: _onMapCreated,
         initialCameraPosition: CameraPosition(target: _center, zoom: 7.0),
         markers: _marcadores,
+
       ),
     );
   }

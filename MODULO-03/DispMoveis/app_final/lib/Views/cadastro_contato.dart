@@ -18,24 +18,57 @@ class _CadastroContatoState extends State<CadastroContato> {
   final TextEditingController _telefoneController = TextEditingController();
   final TextEditingController _latitudeController = TextEditingController();
   final TextEditingController _longitudeController = TextEditingController();
-  String mensagem = "";
+  String msgErro = "";
   String _msgNome = "";
+  String _msgLatitude = "";
+  String _msgLongitude = "";
 
   Future<bool> _cadastrarNovoContato() async {
-    if (_nomeController.text.isEmpty) {
-      setState(() {        
-        _msgNome = "Preencha o nome do contato!";
-      });
-      return false;
-    }
-    setState(() {
-      _msgNome = "";
-    });
 
     String nome = _nomeController.text;
     String telefone = _telefoneController.text;
     double? latitude =  double.tryParse(_latitudeController.text);
     double? longitude = double.tryParse(_longitudeController.text);
+
+    if (nome.isEmpty) {
+      setState(() {        
+        _msgNome = "Preencha o nome do contato!";
+      });
+    }
+    else{
+        setState(() {
+        _msgNome = "";
+      });
+    }
+
+    if(latitude == null){
+      setState(() {
+        _msgLatitude = "Dado inválido! Digite um número válido!";
+      });      
+    }
+    else{
+      setState(() {
+        _msgLatitude = "";
+      });
+    }
+
+    if(longitude == null){
+      setState(() {
+        _msgLongitude = "Dado inválido! Digite um número válido!";
+      });      
+    }
+    else{
+      setState(() {
+        _msgLongitude = "";
+      });
+    }
+
+    if(_msgNome.isNotEmpty || _msgLatitude.isNotEmpty || _msgLongitude.isNotEmpty){
+      return false;
+    }
+
+    
+
     var contato = Contato(nome, telefone: telefone, latitude: latitude, longitude: longitude );
     var controller = ContatoCadastroController(widget.id, contato);
     return await controller.cadastrarNovoContato();
@@ -89,6 +122,10 @@ class _CadastroContatoState extends State<CadastroContato> {
                   label: Text('Latitude')),
             ),
           ),
+          Text(
+            _msgLatitude,
+            style: const TextStyle(color: Colors.red),
+          ),
           const SizedBox(
             height: 15.0,
           ),
@@ -102,30 +139,41 @@ class _CadastroContatoState extends State<CadastroContato> {
                   label: Text('Longitude')),
             ),
           ),
-          Text(mensagem, 
-          style:const TextStyle(color: Colors.red)),
+          Text(
+            _msgLongitude,
+            style: const TextStyle(color: Colors.red),
+          ),
           const SizedBox(
-            height: 15.0,
+            height: 30.0,
+          ),
+          Text(
+            msgErro, 
+            style:const TextStyle(color: Colors.red)
+          ),
+          const SizedBox(
+            height: 30.0,
           ),
           ElevatedButton(
               onPressed: () {
                 _cadastrarNovoContato()
                 .then(
                     (value) { 
-                      if(value) {
+                      if(value) {                       
+                        msgErro = "";
                         _msgNome = "";
-                        mensagem = "";
+                        _msgLatitude = "";
+                        _msgLongitude = "";
                         Navigator.pop(context);
                       }
                       else {
                         setState(() {
-                          mensagem = "Contato não cadastrado!";
+                          msgErro = "Contato não cadastrado!";
                         });
                       }
               })
                 .catchError((_){
                   setState((){
-                    mensagem = "Erro ao Cadastrar o contato";
+                    msgErro = "Erro ao Cadastrar o contato";
                   });
                 });
               },
@@ -133,7 +181,9 @@ class _CadastroContatoState extends State<CadastroContato> {
           TextButton(
               onPressed: () {
                 _msgNome = "";
-                mensagem = "";
+                _msgLatitude = "";
+                _msgLongitude = "";
+                msgErro = "";
                 Navigator.pop(context);
               },
               child: const Text(

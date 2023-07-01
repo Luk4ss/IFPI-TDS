@@ -34,8 +34,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(        
         primarySwatch: Colors.blue,
       ),
+      debugShowCheckedModeBanner: false,
       home: const Login(title: 'Tela de Login'),
+      initialRoute: "/login",
       onGenerateRoute: (settings) {
+
         if(settings.name == "/menu"){
           final args = settings.arguments as Pessoa; 
 
@@ -76,6 +79,8 @@ class MyApp extends StatelessWidget {
             return EditarContato(id: args.id, idContato: args.idContato, contato: args.contato,);
           });
         }
+
+        return null;
       },
       routes: {
         "/login":    (context) => const Login(),
